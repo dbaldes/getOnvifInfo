@@ -1,6 +1,6 @@
 # ONVIF Camera Information Retrieval Tool
 
-This Python script is designed to query and retrieve information from ONVIF-compliant IP cameras, including stream URLs for available profiles.
+This Python script is designed to query and retrieve the stream URLs from an ONVIF-compliant IP camera.
 
 ## Requirements
 
@@ -24,8 +24,6 @@ To use the script, run it from the command line with the IP address, port, usern
 ```bash
 python getonvifinfo.py <ip_address> <port> <username> <password>
 ```
-
-Replace <ip_address>, <port>, <username>, and <password> with the appropriate values for your camera.
 
 ## Example
 
