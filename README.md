@@ -1,20 +1,18 @@
 # ONVIF Camera Information Retrieval Tool
 
-This Python script is designed to query and retrieve the stream URLs from an ONVIF-compliant IP camera.
-
-## Requirements
-
-- Python 3.x
-- ONVIF-compliant IP Camera
-- Python packages: `onvif-zeep`, `zeep`
+This is a simple python script that retrieves available RTSP stream URLs from an ONVIF camera.
+I found that it is often difficult to find the stream URLs without such a tool.
 
 ## Installation
 
-1. Clone the repository or download the script `getonvifinfo.py`.
+1. Clone the repository
 2. Install required Python packages:
-
    ```bash
-   pip install onvif-zeep zeep
+   pip install -r requirements.txt
+   ```
+3. Make the script executable:
+   ```bash
+   chmod u+x getonvifinfo.py
    ```
 
 ## Usage
@@ -22,15 +20,14 @@ This Python script is designed to query and retrieve the stream URLs from an ONV
 To use the script, run it from the command line with the IP address, port, username, and password of your ONVIF-compliant camera.
 
 ```bash
-python getonvifinfo.py <ip_address> <port> <username> <password>
+./getonvifinfo.py <ip_address> <port> <username> <password>
 ```
 
 ## Example
 
 ```bash
-$ python getonvifinfo.py 192.168.4.58 80 admin p4ssw0rd
-{'PROFILE_000': 'rtsp://192.168.4.58/live/0/MAIN', 'PROFILE_001': 'rtsp://192.168.4.58/live/0/SUB'}
+$ ./getonvifinfo.py 192.168.4.58 8999 admin p4ssw0rd
+MainStream: rtsp://192.168.4.58:554/1/h264major
+SubStream: rtsp://192.168.4.58:554/1/h264minor
 ```
-
-This command retrieves the stream URLs for the main and sub-profiles from the camera at IP 192.168.4.58.
 

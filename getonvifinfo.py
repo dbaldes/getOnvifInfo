@@ -1,18 +1,20 @@
+#!/usr/bin/env python3
+
 import argparse
 from onvif import ONVIFCamera
 import zeep
 
 def get_camera_info(ip, port, username, password):
-    # Initialize the camera
+    # initialize the camera
     mycam = ONVIFCamera(ip, port, username, password)
 
-    # Create media service
+    # create media service
     media_service = mycam.create_media_service()
 
-    # Get profiles
+    # get profiles
     profiles = media_service.GetProfiles()
-    
-    # Getting the stream URI
+
+    # getting the stream URI
     stream_uris = {}
     for profile in profiles:
         try:
@@ -25,7 +27,7 @@ def get_camera_info(ip, port, username, password):
 
     return stream_uris
 
-# Parse command-line arguments
+# parse command-line arguments
 parser = argparse.ArgumentParser(description='Get ONVIF Camera Information and Stream URLs')
 parser.add_argument('ip', help='IP address of the camera')
 parser.add_argument('port', type=int, help='Port number')
@@ -33,6 +35,9 @@ parser.add_argument('username', help='Username')
 parser.add_argument('password', help='Password')
 args = parser.parse_args()
 
-# Get camera stream URLs
+# get camera stream URLs
 stream_uris = get_camera_info(args.ip, args.port, args.username, args.password)
-print(stream_uris)
+
+# print each profile name and URI on a new line
+for name, uri in stream_uris.items():
+    print(f"{name}: {uri}")
