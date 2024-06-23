@@ -1,7 +1,8 @@
 # ONVIF Camera Information Retrieval Tool
 
-This is a simple python script that retrieves available RTSP stream URLs from an ONVIF camera.
-I found that it is often difficult to find the stream URLs without such a tool.
+This is a simple python script that retrieves available RTSP stream URLs and, optionally,
+device capabilities from an ONVIF camera. I found that it is often difficult to find the
+stream URLs and other information of a camera without such a tool.
 
 ## Installation
 
@@ -21,6 +22,12 @@ To use the script, run it from the command line with the IP address, port, usern
 
 ```bash
 ./getonvifinfo.py <ip_address> <port> <username> <password>
+```
+
+Or
+
+```bash
+./getonvifinfo.py <ip_address> <port> <username> <password> --capabilities
 ```
 
 ## Example
