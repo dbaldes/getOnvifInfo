@@ -31,7 +31,14 @@ def get_capabilities(cam):
     # get the device capabilities
     return devicemgmt_service.GetCapabilities({'Category': 'All'})
 
-def print_capabilities(capabilities):
+def get_device_info(cam):
+    # get the device management service
+    devicemgmt_service = cam.create_devicemgmt_service()
+
+    # get device information
+    return devicemgmt_service.GetDeviceInformation()
+
+def print_data(capabilities):
     def recurse_dict(d, indent=0):
         if isinstance(d, dict):
             for key, value in d.items():
@@ -66,7 +73,6 @@ def print_capabilities(capabilities):
         else:
             print('  ' * indent + str(d))
 
-    print("Device Capabilities:")
     recurse_dict(capabilities)
 
 # parse command-line arguments
@@ -75,6 +81,7 @@ parser.add_argument('ip', help='IP address of the camera')
 parser.add_argument('port', type=int, help='Port number')
 parser.add_argument('username', help='Username')
 parser.add_argument('password', help='Password')
+parser.add_argument('--info', '-i', action='store_true', help='Print device info')
 parser.add_argument('--capabilities', '-c', action='store_true', help='Print camera capabilities')
 args = parser.parse_args()
 
@@ -88,6 +95,16 @@ stream_uris = get_stream_uris(cam)
 for name, uri in stream_uris.items():
     print(f"{name}: {uri}")
 
+if args.info:
+    device_info = get_device_info(cam)
+    print()
+    print("Device Info:")
+    print()
+    print_data(device_info)
+
 if args.capabilities:
     capabilities = get_capabilities(cam)
-    print_capabilities(capabilities)
+    print()
+    print("Device Capabilities:")
+    print()
+    print_data(capabilities)
