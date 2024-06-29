@@ -1,9 +1,12 @@
-# ONVIF Camera Information Retrieval Tool
+# ONVIF Camera Tools
 
-This is a simple python script that retrieves available RTSP stream URLs and, optionally,
+**getonvifinfo.py** is a simple python script that retrieves available RTSP stream URLs and, optionally,
 device capabilities and device information from an ONVIF camera.
 I found that it is often difficult to find the stream URLs and other information of a
 camera without such a tool.
+
+**onvifrestart.py** is a python script that restarts a camera using the ONVIF protocol. I got some cheap
+cameras that need regular restarting.
 
 ## Installation
 
@@ -12,14 +15,14 @@ camera without such a tool.
    ```bash
    pip install -r requirements.txt
    ```
-3. Make the script executable:
+3. Make the scripts executable:
    ```bash
-   chmod u+x getonvifinfo.py
+   chmod u+x *.py
    ```
 
 ## Usage
 
-To use the script, run it from the command line with the IP address, port, username, and password of your ONVIF-compliant camera.
+To use the scripts, run them from the command line with the IP address, port, username, and password of your ONVIF-compliant camera.
 
 ```bash
 $ ./getonvifinfo.py -h
@@ -37,6 +40,22 @@ options:
   -h, --help          show this help message and exit
   --info, -i          Print device info
   --capabilities, -c  Print camera capabilities
+```
+
+```bash
+$ ./onvifrestart.py -h
+usage: onvifrestart.py [-h] ip port username password
+
+Restart an ONVIF Camera
+
+positional arguments:
+  ip          IP address of the camera
+  port        Port number
+  username    Username
+  password    Password
+
+options:
+  -h, --help  show this help message and exit
 ```
 
 ## Example
