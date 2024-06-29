@@ -2,7 +2,6 @@
 
 import argparse
 from onvif import ONVIFCamera
-import zeep
 
 def get_stream_uris(cam):
     # create media service
